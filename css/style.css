@@ -1,0 +1,10 @@
+/* Custom styles (if needed) */
+.logo {
+  max-height: 40px;
+}
+.btn {
+  transition: background-color 0.2s ease-in-out;
+}
+.modal {
+  z-index: 999;
+}

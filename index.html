@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clean and professional landing page for vacancies and employer contact." />
+  <title>Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/jobs.js"></script>
+  <script defer src="/js/main.js"></script>
+</head>
+<body class="bg-white text-black font-sans">
+  <header class="flex justify-between items-center p-6 shadow">
+    <img src="/assets/logo.png" alt="Logo" class="h-10" />
+    <nav class="space-x-6">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#vacancies" class="hover:underline">Vacancies</a>
+      <a href="#employer" class="hover:underline">For Employers</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+      <h1 class="text-4xl font-bold mb-4">About Us</h1>
+      <p class="max-w-xl">Placeholder for your about section content.</p>
+    </section>
+
+    <section id="vacancies" class="min-h-screen px-4 py-10">
+      <h2 class="text-3xl font-semibold mb-6 text-center">Open Positions</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="job-tile p-6 border rounded shadow cursor-pointer hover:bg-gray-50" data-job="position1">Position 1</div>
+        <div class="job-tile p-6 border rounded shadow cursor-pointer hover:bg-gray-50" data-job="position2">Position 2</div>
+        <div class="job-tile p-6 border rounded shadow cursor-pointer hover:bg-gray-50" data-job="position3">Position 3</div>
+      </div>
+    </section>
+
+    <section id="employer" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+      <h2 class="text-3xl font-semibold mb-4">Hiring?</h2>
+      <p class="mb-6 max-w-md">If you're looking to fill a role, we'd love to help.</p>
+      <a href="/forms/client-form.html" class="btn px-6 py-3 bg-black text-white rounded hover:bg-gray-800">Let's Hire</a>
+    </section>
+  </main>
+
+  <div id="job-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded shadow-lg max-w-lg w-full relative">
+      <button class="close-btn absolute top-2 right-2 text-xl">&times;</button>
+      <h3 id="modal-title" class="text-2xl font-semibold mb-4"></h3>
+      <p id="modal-description" class="mb-6"></p>
+      <a href="/forms/candidate-form.html" class="btn px-4 py-2 bg-black text-white rounded hover:bg-gray-800">Apply</a>
+    </div>
+  </div>
+
+  <footer class="text-center py-6 border-t mt-10">
+    <p>&copy; 2025 Your Company</p>
+  </footer>
+</body>
+</html>
