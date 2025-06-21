@@ -1,10 +1,39 @@
-/* Custom styles (if needed) */
-.logo {
-  max-height: 40px;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+  padding: 2rem;
 }
-.btn {
-  transition: background-color 0.2s ease-in-out;
+.vacancy-tile {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
-.modal {
-  z-index: 999;
+.job-details {
+  margin-top: 1rem;
+  background: #f9f9f9;
+  padding: 1rem;
+}
+.application-form {
+  margin-top: 1rem;
+  background: #fff;
+  padding: 1rem;
+  border: 1px dashed #ccc;
+}
+.confirmation {
+  margin-top: 1rem;
+  color: green;
+}
+.hidden {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+.visible {
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.5s ease-in;
 }
