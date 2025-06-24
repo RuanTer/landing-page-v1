@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kroot Landing Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-white text-black">
   <main class="w-full">
-    <!-- About Section -->
     <section id="about" class="min-h-screen flex items-center justify-center px-4">
       <div class="max-w-2xl text-center">
         <h1 class="text-4xl font-bold mb-4">Welcome to Kroot</h1>
@@ -17,25 +19,23 @@
       </div>
     </section>
 
-    <!-- Vacancies Section -->
     <section id="vacancies" class="min-h-screen bg-gray-100 py-10 px-4">
       <h2 class="text-3xl font-bold text-center mb-8">Current Vacancies</h2>
       <div class="grid gap-6 max-w-4xl mx-auto">
-        <!-- Tile Template -->
         
 <div class="border rounded-xl p-4 shadow bg-white">
   <h3 class="text-xl font-semibold mb-2">Position 1</h3>
   <p class="text-gray-600 mb-2">Click below to view more and apply.</p>
   <button onclick="toggleDetails(this)" class="text-blue-600 underline">View Details</button>
   <div class="mt-4 hidden transition-all duration-500 ease-in-out">
-    <p class="mb-3">This is a full description of Position 1. Add your job responsibilities, requirements, and more here.</p>
-    <form action="https://formspree.io/f/mwkgnzqg" method="POST" enctype="multipart/form-data" class="space-y-3">
+    <p class="mb-3">Full description of Position 1 goes here.</p>
+    <form class="candidateForm space-y-3" data-role="candidate-1">
       <input type="text" name="name" placeholder="Full Name" required class="w-full border p-2 rounded" />
       <input type="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
       <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
-      <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)" class="w-full border p-2 rounded" />
-      <input type="file" name="cv" class="w-full border p-2 rounded" />
+      <input type="url" name="linkedin" placeholder="LinkedIn or File URL" class="w-full border p-2 rounded" />
       <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Apply</button>
+      <p class="candidateSuccess text-green-600 hidden">Thank you! We've received your application.</p>
     </form>
   </div>
 </div>
@@ -46,14 +46,14 @@
   <p class="text-gray-600 mb-2">Click below to view more and apply.</p>
   <button onclick="toggleDetails(this)" class="text-blue-600 underline">View Details</button>
   <div class="mt-4 hidden transition-all duration-500 ease-in-out">
-    <p class="mb-3">This is a full description of Position 2. Add your job responsibilities, requirements, and more here.</p>
-    <form action="https://formspree.io/f/mwkgnzqg" method="POST" enctype="multipart/form-data" class="space-y-3">
+    <p class="mb-3">Full description of Position 2 goes here.</p>
+    <form class="candidateForm space-y-3" data-role="candidate-2">
       <input type="text" name="name" placeholder="Full Name" required class="w-full border p-2 rounded" />
       <input type="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
       <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
-      <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)" class="w-full border p-2 rounded" />
-      <input type="file" name="cv" class="w-full border p-2 rounded" />
+      <input type="url" name="linkedin" placeholder="LinkedIn or File URL" class="w-full border p-2 rounded" />
       <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Apply</button>
+      <p class="candidateSuccess text-green-600 hidden">Thank you! We've received your application.</p>
     </form>
   </div>
 </div>
@@ -64,14 +64,14 @@
   <p class="text-gray-600 mb-2">Click below to view more and apply.</p>
   <button onclick="toggleDetails(this)" class="text-blue-600 underline">View Details</button>
   <div class="mt-4 hidden transition-all duration-500 ease-in-out">
-    <p class="mb-3">This is a full description of Position 3. Add your job responsibilities, requirements, and more here.</p>
-    <form action="https://formspree.io/f/mwkgnzqg" method="POST" enctype="multipart/form-data" class="space-y-3">
+    <p class="mb-3">Full description of Position 3 goes here.</p>
+    <form class="candidateForm space-y-3" data-role="candidate-3">
       <input type="text" name="name" placeholder="Full Name" required class="w-full border p-2 rounded" />
       <input type="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
       <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
-      <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)" class="w-full border p-2 rounded" />
-      <input type="file" name="cv" class="w-full border p-2 rounded" />
+      <input type="url" name="linkedin" placeholder="LinkedIn or File URL" class="w-full border p-2 rounded" />
       <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Apply</button>
+      <p class="candidateSuccess text-green-600 hidden">Thank you! We've received your application.</p>
     </form>
   </div>
 </div>
@@ -79,22 +79,22 @@
       </div>
     </section>
 
-    <!-- Employer Section -->
     <section id="employer" class="min-h-screen flex items-center justify-center px-4 bg-white">
       <div class="w-full max-w-2xl border p-6 rounded-xl shadow">
         <h2 class="text-2xl font-semibold mb-4">Are You Hiring?</h2>
         <p class="mb-4">Let us know what role you’re looking to fill.</p>
-        <form class="space-y-4" action="https://formspree.io/f/mwkgnzqg" method="POST">
+        <form id="employerForm" class="space-y-4">
           <input type="text" name="name" placeholder="Your Name" required class="w-full border p-2 rounded" />
           <input type="email" name="email" placeholder="Your Email" required class="w-full border p-2 rounded" />
           <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
           <input type="text" name="company" placeholder="Company Name" required class="w-full border p-2 rounded" />
           <textarea name="message" placeholder="What role can we help you fill?" required class="w-full border p-2 rounded"></textarea>
           <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Submit</button>
+          <p id="employerSuccess" class="text-green-600 hidden">Thank you! We'll be in touch soon.</p>
         </form>
       </div>
     </section>
   </main>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
