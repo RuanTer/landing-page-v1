@@ -16,13 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
   emailjs.init("4oostFQh7yxUFHUBo");
 
   function sendToGoogleSheets(data, type) {
-    console.log("Sending to Google Sheets:", data);
+    const payload = { ...data, type };
+    console.log("Sending to Google Sheets:", payload);
     fetch("https://script.google.com/macros/s/AKfycbwBUYxQxUMtfSJSYyMFG6PU9BrzyH4o0eClqgQhZZtC9zGmT--CbyH0ErkyexuGKQWq/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ ...data, type })
+      body: JSON.stringify(payload)
     })
     .then(response => response.text())
     .then(text => {

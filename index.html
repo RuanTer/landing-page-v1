@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kroot Landing Page</title>
+  <title>Kroot</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="bg-white text-black">
   <main class="w-full">
     <section id="about" class="min-h-screen flex items-center justify-center px-4">
       <div class="max-w-2xl text-center">
         <h1 class="text-4xl font-bold mb-4">Welcome to Kroot</h1>
-        <p class="text-lg">Your gateway to top-tier iGaming recruitment in Africa.</p>
+        <p class="text-lg">Your gateway to top-tier recruitment in Africa.</p>
       </div>
     </section>
 
@@ -31,7 +33,8 @@
             <form class="candidateForm space-y-3">
               <input type="text" name="name" placeholder="Full Name" required class="w-full border p-2 rounded" />
               <input type="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
-              <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
+              <input type="tel" name="contact" placeholder="Contact Number" required
+                class="w-full border p-2 rounded" />
               <input type="url" name="linkedin" placeholder="LinkedIn or File URL" class="w-full border p-2 rounded" />
               <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Apply</button>
               <p class="candidateSuccess text-green-600 hidden">Thank you! We've received your application.</p>
@@ -49,7 +52,8 @@
           <input type="email" name="email" placeholder="Your Email" required class="w-full border p-2 rounded" />
           <input type="tel" name="contact" placeholder="Contact Number" required class="w-full border p-2 rounded" />
           <input type="text" name="company" placeholder="Company Name" required class="w-full border p-2 rounded" />
-          <textarea name="message" placeholder="What role can we help you fill?" required class="w-full border p-2 rounded"></textarea>
+          <textarea name="message" placeholder="What role can we help you fill?" required
+            class="w-full border p-2 rounded"></textarea>
           <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Submit</button>
           <p id="employerSuccess" class="text-green-600 hidden">Thank you! We'll be in touch soon.</p>
         </form>
@@ -58,4 +62,5 @@
   </main>
   <script src="script.js" defer></script>
 </body>
+
 </html>
