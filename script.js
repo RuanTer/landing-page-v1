@@ -16,23 +16,40 @@ document.addEventListener("DOMContentLoaded", function () {
   emailjs.init("4oostFQh7yxUFHUBo");
 
   function sendToGoogleSheets(data, type) {
+    console.log("Sending to Google Sheets:", data);
     fetch("https://script.google.com/macros/s/AKfycbwBUYxQxUMtfSJSYyMFG6PU9BrzyH4o0eClqgQhZZtC9zGmT--CbyH0ErkyexuGKQWq/exec", {
       method: "POST",
-      body: JSON.stringify({ ...data, type }),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify({ ...data, type })
+    })
+    .then(response => response.text())
+    .then(text => {
+      console.log("Google Sheets response:", text);
+    })
+    .catch(err => {
+      console.error("Error sending to Google Sheets:", err);
     });
   }
 
   function sendData(form, type) {
     const data = Object.fromEntries(new FormData(form).entries());
-    const ref = database.ref(type).push();
-    ref.set(data);
+    console.log("Form data collected:", data);
+
+    try {
+      const ref = database.ref(type).push();
+      ref.set(data);
+      console.log("Data pushed to Firebase.");
+    } catch (firebaseErr) {
+      console.error("Firebase error:", firebaseErr);
+    }
+
     sendToGoogleSheets(data, type === "candidates" ? "candidate" : "employer");
 
     emailjs.send("service_tysp1lh", "template_0t1927l", data)
-      .then(() => {
+      .then(response => {
+        console.log("EmailJS success:", response.status, response.text);
         form.querySelector(".candidateSuccess, #employerSuccess")?.classList.remove("hidden");
         form.reset();
       })
@@ -49,10 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  document.getElementById("employerForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    sendData(this, "employers");
-  });
+  const employerForm = document.getElementById("employerForm");
+  if (employerForm) {
+    employerForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      sendData(this, "employers");
+    });
+  }
 });
 
 function toggleDetails(btn) {
