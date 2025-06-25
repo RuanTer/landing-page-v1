@@ -15,10 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const database = firebase.database();
   emailjs.init("4oostFQh7yxUFHUBo");
 
+  function sendToGoogleSheets(data, type) {
+    fetch("https://script.google.com/macros/s/AKfycbwBUYxQxUMtfSJSYyMFG6PU9BrzyH4o0eClqgQhZZtC9zGmT--CbyH0ErkyexuGKQWq/exec", {
+      method: "POST",
+      body: JSON.stringify({ ...data, type }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
   function sendData(form, type) {
     const data = Object.fromEntries(new FormData(form).entries());
     const ref = database.ref(type).push();
     ref.set(data);
+    sendToGoogleSheets(data, type === "candidates" ? "candidate" : "employer");
 
     emailjs.send("service_tysp1lh", "template_0t1927l", data)
       .then(() => {
